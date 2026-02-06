@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+</head>
+<body>
+    <h2>Online Payment Fraud Detection</h2>
+    
+    <form action="{{ url_for('predict_data')}}" method="post">
+        <label>Step (Time in Hours):</label>
+        <input type="number" name="step" placeholder="e.g. 1" required><br><br>
+
+        <label>Transaction Type:</label>
+        <select name="type" required>
+            <option value="CASH_OUT">CASH_OUT</option>
+            <option value="PAYMENT">PAYMENT</option>
+            <option value="CASH_IN">CASH_IN</option>
+            <option value="TRANSFER">TRANSFER</option>
+            <option value="DEBIT">DEBIT</option>
+        </select><br><br>
+
+        <label>Amount:</label>
+        <input type="number" step="0.01" name="amount" required><br><br>
+
+        <label>Old Balance Origin:</label>
+        <input type="number" step="0.01" name="oldbalanceOrg" required><br><br>
+
+        <label>New Balance Origin:</label>
+        <input type="number" step="0.01" name="newbalanceOrig" required><br><br>
+
+        <label>Old Balance Destination:</label>
+        <input type="number" step="0.01" name="oldbalanceDest" required><br><br>
+
+        <label>New Balance Destination:</label>
+        <input type="number" step="0.01" name="newbalanceDest" required><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if results %}
+    <h3>The prediction result is: {{results}}</h3>
+    {% endif %}
+</body>
+</html>
